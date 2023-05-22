@@ -1,17 +1,18 @@
 Package: datavolleyXtra
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
-Authors@R: 
-    person("Tyler", "Widdison", , "tylerperrywiddison@gmail.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: person("Tyler", 'Widdison', email = 'tylerperrywiddison@gmail.com', 
+  role = c('aut', 'cre'))
+Description: Used in additon to datavolley package with additional functions for NCAA woemens volleybal schedule.
 License: MIT + file LICENSE
 Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports:
-    dplyr,
-    httr,
-    rvest,
-    stringr
+  dplyr,
+  httr,
+  rvest,
+  stringr
+Depends:
+  magrittr
 URL: https://github.com/tyler-widdison/datavolleyXtra
 BugReports: https://github.com/tyler-widdison/datavolleyXtra/issues

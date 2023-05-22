@@ -3,17 +3,12 @@
 #' @return get_ncaaw_teams data.frame: 'Name', 'Conference', 'ID'
 #'
 #' @examples
-#' /dontrun{
+#' \dontrun{
 #'   get_ncaaw_teams
 #'   }
 #'
 #' @export
-#'
 
-library(httr)
-library(rvest)
-library(stringr)
-library(dplyr)
 
 get_ncaaw_teams <- function(){
   # get all the team names and corresponding IDs from the NCAA website

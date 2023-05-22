@@ -1,0 +1,43 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# datavolleyXtra
+
+<!-- badges: start -->
+
+<!-- badges: end -->
+
+datavolleyXtra is a supplementary to <https://github.com/openvolley/datavolley>.
+
+## Installation
+
+You can install the development version of datavolleyXtra from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("tyler-widdison/datavolleyXtra")
+```
+
+## Get NCAA Women Volleyball schedule
+
+```{r library}
+library(datavolleyXtra)
+```
+
+Get the NCAA womens teams
+
+  ```{r teams}
+get_ncaaw_teams()
+```
