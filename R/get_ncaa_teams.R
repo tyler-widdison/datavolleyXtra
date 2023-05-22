@@ -1,13 +1,10 @@
-#' Return datavolley plays object with added columns
+#' Return NCAA teams dataframe object
 #'
-#' @references \url{https://github.com/openvolley/datavolley}
-#' @param d: dvw file path, run ('.') if local
-#'
-#' @return dv_readExtra data.frame: the plays component of a datavolley object, as returned by \code{dv_read()} In addition to plays, it also returns the following: filename, date (possible it could be incorrect), receiving_team, receiving_team_id, set_won_by, home_sets_won, visiting_sets_won, match_won_by, set_won_by_id, team_won_set, match_won_by_id, team_won_match, home_setter_id, visting_setter_id, setter_id, setter_position, setter_front_back, opponent, sets_won, match_won, position
+#' @return get_ncaaw_teams data.frame: 'Name', 'Conference', 'ID'
 #'
 #' @examples
 #' /dontrun{
-#'   dv_readExtra(datavolley::dv_example_file())
+#'   get_ncaaw_teams
 #'   }
 #'
 #' @export
@@ -42,7 +39,7 @@ get_ncaaw_teams <- function(){
   team_ids <- stringr::str_extract(all_teams_matrix[,2], "\\d+")
 
   # Step 3: reconstitute the teams/ids as a tibble
-  teams_df <- tibble(
+  teams_df <- dplyr::tibble(
     Name = team_names,
     Conference = team_conferences,
     ID = team_ids
