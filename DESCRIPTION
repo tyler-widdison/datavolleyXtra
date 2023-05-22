@@ -13,3 +13,5 @@ Imports:
     httr,
     rvest,
     stringr
+URL: https://github.com/tyler-widdison/datavolleyXtra
+BugReports: https://github.com/tyler-widdison/datavolleyXtra/issues
