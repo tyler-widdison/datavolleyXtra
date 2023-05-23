@@ -35,7 +35,7 @@ get_team_schedule <- function(team_name, team_id, yr) {
       rvest::read_html(url2) %>% rvest::html_nodes("option")
 
     year_detect <-
-      rvest::html_text(year_options) %>% stringr::str_detect(yr)
+      rvest::html_text(year_options) %>% stringr::str_detect(as.character(yr))
 
     if (!any(year_detect)) {
       warning(
@@ -68,7 +68,7 @@ get_team_schedule <- function(team_name, team_id, yr) {
       warning(paste0(
         team_name,
         " does not appear to have played any games in ",
-        year,
+        yr,
         "."
       ))
       games_url <- NA_character_

@@ -17,7 +17,7 @@ Return datavolley plays object with added columns
 }
 \examples{
 \dontrun{
-  dv_readXtra('dvws')
+  dv_readXtra('.')
   }
 }
 \references{

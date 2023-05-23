@@ -30,11 +30,17 @@ You can install the development version of datavolleyXtra from [GitHub](https://
 devtools::install_github("tyler-widdison/datavolleyXtra")
 ```
 
-## Get NCAA Women's Volleyball schedules
+## Reading datavolley files
 
-```{r library}
+This `dv_readXtra` is a function to read datavolley files with additional columns. Add as many files as you want so long as you have the correct path.
+
+```{r datavolley}
 library(datavolleyXtra)
+df <- dv_readXtra('.')
+df %>% head()
 ```
+
+## Get NCAA Women's Volleyball schedules
 
 Get the NCAA womens teams
 
@@ -45,11 +51,11 @@ get_ncaaw_teams()
 Get NCAA womens team schedule
 
 ```{r teamSchedule}
-get_team_schedule('Yale', 813, 2019)
+get_team_schedule(team_name = 'Yale', team_id = '813', yr = 2019)
 ```
 
 Or get a conference of NCAA womens matches
 
 ```{r confSchedule}
-get_conf_schedule('Big Ten', 2023)
+get_conf_schedule(conf_name = 'Big Ten', yr = 2022)
 ```
