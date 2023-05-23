@@ -38,6 +38,18 @@ library(datavolleyXtra)
 
 Get the NCAA womens teams
 
-  ```{r teams}
+```{r teams}
 get_ncaaw_teams()
+```
+
+Get NCAA womens team schedule
+
+```{r teamSchedule}
+get_team_schedule('Yale', 813, 2019)
+```
+
+Or get a conference of NCAA womens matches
+
+```{r confSchedule}
+get_conf_schedule('Big Ten', 2023)
 ```
