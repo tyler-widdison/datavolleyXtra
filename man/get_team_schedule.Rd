@@ -16,7 +16,7 @@ Return NCAA schedule dataframe object
 }
 \examples{
 \dontrun{
-  get_team_schedule(Yale, 813, 2019)
+  get_team_schedule('Yale', 813, 2019)
   }
 
 }

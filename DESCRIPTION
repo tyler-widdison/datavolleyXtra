@@ -11,7 +11,10 @@ Imports:
   dplyr,
   httr,
   rvest,
-  stringr
+  stringr,
+  datavolley,
+  ovlytics,
+  magrittr
 Depends:
   magrittr
 URL: https://github.com/tyler-widdison/datavolleyXtra
