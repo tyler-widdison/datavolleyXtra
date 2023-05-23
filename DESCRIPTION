@@ -1,5 +1,5 @@
 Package: datavolleyXtra
-Title: What the Package Does (One Line, Title Case)
+Title: Functions to support the NCAA volleyball team
 Version: 0.0.0.9000
 Authors@R: person("Tyler", 'Widdison', email = 'tylerperrywiddison@gmail.com', 
   role = c('aut', 'cre'))
