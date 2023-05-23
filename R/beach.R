@@ -10,5 +10,12 @@
 #' @export
 
 get_fivb_finishes <- function() {
-
+  # Men
+  tribble(
+    ~xml_team, ~finish,  ~tournament,
+    "a",       2,        3.6,
+    "b",       1,        8.5,
+  )
 }
+
+# In development
