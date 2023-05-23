@@ -35,7 +35,7 @@ get_team_schedule <- function(team_name, team_id, yr) {
       rvest::read_html(url2) %>% rvest::html_nodes("option")
 
     year_detect <-
-      rvest::html_text(year_options) %>% stringr::str_detect(year)
+      rvest::html_text(year_options) %>% stringr::str_detect(yr)
 
     if (!any(year_detect)) {
       warning(

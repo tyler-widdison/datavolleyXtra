@@ -19,7 +19,7 @@ You can install the development version of datavolleyXtra from
 devtools::install_github("tyler-widdison/datavolleyXtra")
 ```
 
-## Get NCAA Women Volleyball schedule
+## Get NCAA Women’s Volleyball schedules
 
 ``` r
 library(datavolleyXtra)
