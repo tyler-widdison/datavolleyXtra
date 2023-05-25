@@ -1,9 +1,9 @@
 #' Return datavolley plays object with added columns
 #'
 #' @references \url{https://github.com/openvolley/datavolley}
-#' @param d: dvw file path, run ('.') if local
+#' @param: dvw directory  path, run ('.') if local
 #'
-#' @return dv_readXtra data.frame: the plays component of a datavolley object, as returned by \code{dv_read()} In addition to plays, it also returns the following: filename, date (possible it could be incorrect), receiving_team, receiving_team_id, set_won_by, home_sets_won, visiting_sets_won, match_won_by, set_won_by_id, team_won_set, match_won_by_id, team_won_match, home_setter_id, visting_setter_id, setter_id, setter_position, setter_front_back, opponent, sets_won, match_won, position
+#' @return data.frame: the plays component of a datavolley object, as returned by \code{dv_read()} In addition to plays, it also returns the following: filename, date (possible it could be incorrect), receiving_team, receiving_team_id, set_won_by, home_sets_won, visiting_sets_won, match_won_by, set_won_by_id, team_won_set, match_won_by_id, team_won_match, home_setter_id, visting_setter_id, setter_id, setter_position, setter_front_back, opponent, sets_won, match_won, position
 #'
 #' @examples
 #' \dontrun{
@@ -46,7 +46,14 @@ dv_readXtra <- function(d) {
   }
 
   dir <- dir(d, pattern = "dvw$", full.names = TRUE)
-  lx <- lapply(dir, datavolley::dv_read, insert_technical_timeouts = FALSE)
+  lx <- lapply(d, function(filename) {
+    tryCatch(
+      datavolley::dv_read(filename, insert_technical_timeouts = FALSE),
+      error = function(e) {
+        message(paste0("Error reading file ", filename, ": ", e$message))
+        return(NULL)
+      })
+  })
 
   px <- do.call(rbind, lapply(lx, function(dv) {
     out <- datavolley::plays(dv)
@@ -60,16 +67,23 @@ dv_readXtra <- function(d) {
     out <- ovlytics::ov_augment_plays(out, to_add = c('winners', 'setters', 'receiving_team'))
     # Add a few more columns
     out <- out %>%
-      dplyr::mutate(opponent = dplyr::case_when(team == home_team ~ visiting_team, team == visiting_team ~ home_team),
-             sets_won = ifelse(home_team == team, home_sets_won, visiting_sets_won),
-             match_won = ifelse(home_team == team | visiting_team == team & team_won_match == T, 1, 0),
-             team_won_match = ifelse(team_won_match == T, 1, 0),
-             setter_position = ifelse(setter_position == 1, 'Rotation 1 (S in 1)',
-                                      ifelse(setter_position == 6, 'Rotation 2 (S in 6)',
-                                             ifelse(setter_position == 5, 'Rotation 3 (S in 5)',
-                                                    ifelse(setter_position == 4, 'Rotation 4 (S in 4)',
-                                                           ifelse(setter_position == 3, 'Rotation 5 (S in 3)',
-                                                                  ifelse(setter_position == 2, 'Rotation 6 (S in 2)', setter_position)))))))
+      dplyr::mutate(opponent = dplyr::case_when(team == home_team ~ visiting_team,team == visiting_team ~ home_team),
+                    sets_won = ifelse(home_team == team, home_sets_won, visiting_sets_won),
+                    match_won = ifelse(home_team == team | visiting_team == team & team_won_match == T, 1, 0),
+        team_won_match = ifelse(team_won_match == T, 1, 0),
+        team_score = ifelse(team_id == home_team_id, home_team_score, visiting_team_score),
+        opp_score = ifelse(team_id == visiting_team_id, home_team_score, visiting_team_score),
+        setter_position = as.character(setter_position),
+        setter_position = dplyr::case_when(
+          setter_position == '1' ~ 'Rotation 1 (S in 1)',
+          setter_position == '6' ~ 'Rotation 2 (S in 6)',
+          setter_position == '5' ~ 'Rotation 3 (S in 5)',
+          setter_position == '4' ~ 'Rotation 4 (S in 4)',
+          setter_position == '3' ~ 'Rotation 5 (S in 3)',
+          setter_position == '2' ~ 'Rotation 6 (S in 2)',
+          TRUE ~ setter_position)
+        )
+
   out <- playerFunction(out)
   # Return the data to px
   return(out)
