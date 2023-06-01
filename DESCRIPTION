@@ -13,8 +13,10 @@ Imports:
   rvest,
   stringr,
   datavolley,
-  ovlytics,
-  magrittr
+  DT,
+  janitor,
+  purrr,
+  ovlytics
 Depends:
   magrittr
 URL: https://github.com/tyler-widdison/datavolleyXtra

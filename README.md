@@ -28,186 +28,198 @@ the correct path.
 ``` r
 library(datavolleyXtra)
 #> Loading required package: magrittr
-df <- dv_readXtra('.')
+df <- dv_readXtra("dvws")
+#> Joining with `by = join_by(team, player_name)`
 #> Joining with `by = join_by(team, player_name)`
 #> Joining with `by = join_by(team, player_name)`
 df %>% head()
 #>                           match_id point_id time video_file_number video_time
-#> 1 307d64cb54979154942ca34098e942a9        0 <NA>                 1       1192
-#> 2 307d64cb54979154942ca34098e942a9        0 <NA>                 1       1192
-#> 3 307d64cb54979154942ca34098e942a9        0 <NA>                 1       1192
-#> 4 307d64cb54979154942ca34098e942a9        0 <NA>                 1       1192
-#> 5 307d64cb54979154942ca34098e942a9        0 <NA>                 1       1192
-#> 6 307d64cb54979154942ca34098e942a9        0 <NA>                 1       1193
-#>                 code                           team player_number   player_name
-#> 1           *P01>LUp University of Nebraska-Lincoln            NA          <NA>
-#> 2            *z1>LUp University of Nebraska-Lincoln            NA          <NA>
-#> 3           aP21>LUp          University of Florida            NA          <NA>
-#> 4            az6>LUp          University of Florida            NA          <NA>
-#> 5  *01SM!~~~11C~~~00 University of Nebraska-Lincoln             1 Hames Nicklin
-#> 6 a07RM!~~~11CR~~00B          University of Florida             7 Paige Hammons
-#>   player_id     skill                 skill_type evaluation_code
-#> 1      <NA>      <NA>                       <NA>            <NA>
-#> 2      <NA>      <NA>                       <NA>            <NA>
-#> 3      <NA>      <NA>                       <NA>            <NA>
-#> 4      <NA>      <NA>                       <NA>            <NA>
-#> 5   -189031     Serve           Jump-float serve               !
-#> 6    -70607 Reception Jump-float serve reception               !
-#>                    evaluation attack_code attack_description set_code
-#> 1                        <NA>        <NA>               <NA>     <NA>
-#> 2                        <NA>        <NA>               <NA>     <NA>
-#> 3                        <NA>        <NA>               <NA>     <NA>
-#> 4                        <NA>        <NA>               <NA>     <NA>
-#> 5 OK, no first tempo possible        <NA>               <NA>     <NA>
-#> 6 OK, no first tempo possible        <NA>               <NA>     <NA>
+#> 1 bfd71791e6a0dfb9116192a5851d0879        0 <NA>                 1        685
+#> 2 bfd71791e6a0dfb9116192a5851d0879        0 <NA>                 1        685
+#> 3 bfd71791e6a0dfb9116192a5851d0879        0 <NA>                 1        685
+#> 4 bfd71791e6a0dfb9116192a5851d0879        0 <NA>                 1        685
+#> 5 bfd71791e6a0dfb9116192a5851d0879        0 <NA>                 1        685
+#> 6 bfd71791e6a0dfb9116192a5851d0879        0 <NA>                 1        686
+#>                 code                    team player_number     player_name
+#> 1           aP01>LUp Wright State University            NA            <NA>
+#> 2            az1>LUp Wright State University            NA            <NA>
+#> 3           *P07>LUp      University of Iowa            NA            <NA>
+#> 4            *z2>LUp      University of Iowa            NA            <NA>
+#> 5  a01ST-~~~16C~~~00 Wright State University             1 Maddie Lohmeier
+#> 6 *05RT#~~~16CW~~00B      University of Iowa             5 Meghan Buzzerio
+#>   player_id     skill              skill_type evaluation_code
+#> 1      <NA>      <NA>                    <NA>            <NA>
+#> 2      <NA>      <NA>                    <NA>            <NA>
+#> 3      <NA>      <NA>                    <NA>            <NA>
+#> 4      <NA>      <NA>                    <NA>            <NA>
+#> 5      5033     Serve           Topspin serve               -
+#> 6    -11992 Reception Topspin serve reception               #
+#>                       evaluation attack_code attack_description set_code
+#> 1                           <NA>        <NA>               <NA>     <NA>
+#> 2                           <NA>        <NA>               <NA>     <NA>
+#> 3                           <NA>        <NA>               <NA>     <NA>
+#> 4                           <NA>        <NA>               <NA>     <NA>
+#> 5 Negative, opponent free attack        <NA>               <NA>     <NA>
+#> 6                   Perfect pass        <NA>               <NA>     <NA>
 #>   set_description set_type start_zone end_zone end_subzone end_cone
 #> 1            <NA>     <NA>         NA       NA        <NA>       NA
 #> 2            <NA>     <NA>         NA       NA        <NA>       NA
 #> 3            <NA>     <NA>         NA       NA        <NA>       NA
 #> 4            <NA>     <NA>         NA       NA        <NA>       NA
-#> 5            <NA>     <NA>          1        1           C       NA
-#> 6            <NA>     <NA>          1        1           C       NA
+#> 5            <NA>     <NA>          1        6           C       NA
+#> 6            <NA>     <NA>          1        6           C       NA
 #>   skill_subtype num_players num_players_numeric special_code timeout end_of_set
 #> 1          <NA>        <NA>                  NA         <NA>   FALSE      FALSE
 #> 2          <NA>        <NA>                  NA         <NA>   FALSE      FALSE
 #> 3          <NA>        <NA>                  NA         <NA>   FALSE      FALSE
 #> 4          <NA>        <NA>                  NA         <NA>   FALSE      FALSE
 #> 5          <NA>        <NA>                  NA         <NA>   FALSE      FALSE
-#> 6      On right        <NA>                  NA         <NA>   FALSE      FALSE
+#> 6           Low        <NA>                  NA         <NA>   FALSE      FALSE
 #>   substitution point home_team_score visiting_team_score home_setter_position
 #> 1        FALSE FALSE               1                   0                   NA
-#> 2        FALSE FALSE               1                   0                    1
-#> 3        FALSE FALSE               1                   0                    1
-#> 4        FALSE FALSE               1                   0                    1
-#> 5        FALSE FALSE               1                   0                    1
-#> 6        FALSE FALSE               1                   0                    1
+#> 2        FALSE FALSE               1                   0                   NA
+#> 3        FALSE FALSE               1                   0                   NA
+#> 4        FALSE FALSE               1                   0                    2
+#> 5        FALSE FALSE               1                   0                    2
+#> 6        FALSE FALSE               1                   0                    2
 #>   visiting_setter_position custom_code file_line_number home_p1 home_p2 home_p3
-#> 1                       NA                          110       1       2      25
-#> 2                       NA                          111       1       2      25
-#> 3                       NA                          112       1       2      25
-#> 4                        6                          113       1       2      25
-#> 5                        6          00              114       1       2      25
-#> 6                        6         00B              115       1       2      25
+#> 1                       NA                          108      29       7      16
+#> 2                        1                          109      29       7      16
+#> 3                        1                          110      29       7      16
+#> 4                        1                          111      29       7      16
+#> 5                        1          00              112      29       7      16
+#> 6                        1         00B              113      29       7      16
 #>   home_p4 home_p5 home_p6 visiting_p1 visiting_p2 visiting_p3 visiting_p4
-#> 1      12       3      26           7          10           9          20
-#> 2      12       3      26           7          10           9          20
-#> 3      12       3      26           7          10           9          20
-#> 4      12       3      26           7          10           9          20
-#> 5      12       3      26           7          10           9          20
-#> 6      12       3      26           7          10           9          20
+#> 1       8       1       5           1           3           9          14
+#> 2       8       1       5           1           3           9          14
+#> 3       8       1       5           1           3           9          14
+#> 4       8       1       5           1           3           9          14
+#> 5       8       1       5           1           3           9          14
+#> 6       8       1       5           1           3           9          14
 #>   visiting_p5 visiting_p6 start_coordinate mid_coordinate end_coordinate
-#> 1           5          21               NA             NA             NA
-#> 2           5          21               NA             NA             NA
-#> 3           5          21               NA             NA             NA
-#> 4           5          21               NA             NA             NA
-#> 5           5          21              278             NA           8123
-#> 6           5          21              278             NA           8123
+#> 1          12          10               NA             NA             NA
+#> 2          12          10               NA             NA             NA
+#> 3          12          10               NA             NA             NA
+#> 4          12          10               NA             NA             NA
+#> 5          12          10              582             NA           7860
+#> 6          12          10              582             NA           7860
 #>   point_phase attack_phase start_coordinate_x start_coordinate_y
 #> 1        <NA>         <NA>                 NA                 NA
 #> 2        <NA>         <NA>                 NA                 NA
 #> 3        <NA>         <NA>                 NA                 NA
 #> 4        <NA>         <NA>                 NA                 NA
-#> 5        <NA>         <NA>            3.03125        -0.05555556
-#> 6        <NA>         <NA>            3.03125        -0.05555556
+#> 5        <NA>         <NA>            3.18125          0.1666667
+#> 6        <NA>         <NA>            3.18125          0.1666667
 #>   mid_coordinate_x mid_coordinate_y end_coordinate_x end_coordinate_y
 #> 1               NA               NA               NA               NA
 #> 2               NA               NA               NA               NA
 #> 3               NA               NA               NA               NA
 #> 4               NA               NA               NA               NA
-#> 5               NA               NA          0.96875         5.796296
-#> 6               NA               NA          0.96875         5.796296
+#> 5               NA               NA          2.35625         5.574074
+#> 6               NA               NA          2.35625         5.574074
 #>   home_player_id1 home_player_id2 home_player_id3 home_player_id4
-#> 1         -189031         -121447         -220743          -65299
-#> 2         -189031         -121447         -220743          -65299
-#> 3         -189031         -121447         -220743          -65299
-#> 4         -189031         -121447         -220743          -65299
-#> 5         -189031         -121447         -220743          -65299
-#> 6         -189031         -121447         -220743          -65299
+#> 1           -2306          -49732          -66705           -2299
+#> 2           -2306          -49732          -66705           -2299
+#> 3           -2306          -49732          -66705           -2299
+#> 4           -2306          -49732          -66705           -2299
+#> 5           -2306          -49732          -66705           -2299
+#> 6           -2306          -49732          -66705           -2299
 #>   home_player_id5 home_player_id6 visiting_player_id1 visiting_player_id2
-#> 1         -220746           15396              -70607                3607
-#> 2         -220746           15396              -70607                3607
-#> 3         -220746           15396              -70607                3607
-#> 4         -220746           15396              -70607                3607
-#> 5         -220746           15396              -70607                3607
-#> 6         -220746           15396              -70607                3607
+#> 1           -2303          -11992                5033                5035
+#> 2           -2303          -11992                5033                5035
+#> 3           -2303          -11992                5033                5035
+#> 4           -2303          -11992                5033                5035
+#> 5           -2303          -11992                5033                5035
+#> 6           -2303          -11992                5033                5035
 #>   visiting_player_id3 visiting_player_id4 visiting_player_id5
-#> 1               15094             -229906               15092
-#> 2               15094             -229906               15092
-#> 3               15094             -229906               15092
-#> 4               15094             -229906               15092
-#> 5               15094             -229906               15092
-#> 6               15094             -229906               15092
-#>   visiting_player_id6 set_number team_touch_id                      home_team
-#> 1             -231062          1             0 University of Nebraska-Lincoln
-#> 2             -231062          1             0 University of Nebraska-Lincoln
-#> 3             -231062          1             1 University of Nebraska-Lincoln
-#> 4             -231062          1             1 University of Nebraska-Lincoln
-#> 5             -231062          1             2 University of Nebraska-Lincoln
-#> 6             -231062          1             3 University of Nebraska-Lincoln
-#>           visiting_team home_team_id visiting_team_id team_id
-#> 1 University of Florida           98              280      98
-#> 2 University of Florida           98              280      98
-#> 3 University of Florida           98              280     280
-#> 4 University of Florida           98              280     280
-#> 5 University of Florida           98              280      98
-#> 6 University of Florida           98              280     280
-#>                     point_won_by winning_attack                   serving_team
-#> 1 University of Nebraska-Lincoln          FALSE University of Nebraska-Lincoln
-#> 2 University of Nebraska-Lincoln          FALSE University of Nebraska-Lincoln
-#> 3 University of Nebraska-Lincoln          FALSE University of Nebraska-Lincoln
-#> 4 University of Nebraska-Lincoln          FALSE University of Nebraska-Lincoln
-#> 5 University of Nebraska-Lincoln          FALSE University of Nebraska-Lincoln
-#> 6 University of Nebraska-Lincoln          FALSE University of Nebraska-Lincoln
-#>       phase home_score_start_of_point visiting_score_start_of_point
-#> 1      <NA>                         0                             0
-#> 2      <NA>                         0                             0
-#> 3      <NA>                         0                             0
-#> 4      <NA>                         0                             0
-#> 5     Serve                         0                             0
-#> 6 Reception                         0                             0
-#>                           filename       date        receiving_team
-#> 1 &2018-08-24 58911 UNL-UF(VM).dvw 2018-08-24 University of Florida
-#> 2 &2018-08-24 58911 UNL-UF(VM).dvw 2018-08-24 University of Florida
-#> 3 &2018-08-24 58911 UNL-UF(VM).dvw 2018-08-24 University of Florida
-#> 4 &2018-08-24 58911 UNL-UF(VM).dvw 2018-08-24 University of Florida
-#> 5 &2018-08-24 58911 UNL-UF(VM).dvw 2018-08-24 University of Florida
-#> 6 &2018-08-24 58911 UNL-UF(VM).dvw 2018-08-24 University of Florida
-#>   receiving_team_id            set_won_by home_sets_won visiting_sets_won
-#> 1               280 University of Florida             1                 3
-#> 2               280 University of Florida             1                 3
-#> 3               280 University of Florida             1                 3
-#> 4               280 University of Florida             1                 3
-#> 5               280 University of Florida             1                 3
-#> 6               280 University of Florida             1                 3
-#>            match_won_by set_won_by_id team_won_set match_won_by_id
-#> 1 University of Florida           280        FALSE             280
-#> 2 University of Florida           280        FALSE             280
-#> 3 University of Florida           280         TRUE             280
-#> 4 University of Florida           280         TRUE             280
-#> 5 University of Florida           280        FALSE             280
-#> 6 University of Florida           280         TRUE             280
-#>   team_won_match home_setter_id visiting_setter_id setter_id
-#> 1              0           <NA>               <NA>      <NA>
-#> 2              0        -189031               <NA>   -189031
-#> 3              1        -189031               <NA>      <NA>
-#> 4              1        -189031            -231062   -231062
-#> 5              0        -189031            -231062   -189031
-#> 6              1        -189031            -231062   -231062
-#>       setter_position setter_front_back                       opponent sets_won
-#> 1                <NA>              <NA>          University of Florida        1
-#> 2 Rotation 1 (S in 1)              back          University of Florida        1
-#> 3                <NA>              <NA> University of Nebraska-Lincoln        3
-#> 4 Rotation 2 (S in 6)              back University of Nebraska-Lincoln        3
-#> 5 Rotation 1 (S in 1)              back          University of Florida        1
-#> 6 Rotation 2 (S in 6)              back University of Nebraska-Lincoln        3
-#>   match_won position
-#> 1         1     <NA>
-#> 2         1     <NA>
-#> 3         1     <NA>
-#> 4         1     <NA>
-#> 5         1        S
-#> 6         1       OH
+#> 1                5041                5046                5044
+#> 2                5041                5046                5044
+#> 3                5041                5046                5044
+#> 4                5041                5046                5044
+#> 5                5041                5046                5044
+#> 6                5041                5046                5044
+#>   visiting_player_id6 set_number team_touch_id          home_team
+#> 1                5042          1             0 University of Iowa
+#> 2                5042          1             0 University of Iowa
+#> 3                5042          1             1 University of Iowa
+#> 4                5042          1             1 University of Iowa
+#> 5                5042          1             2 University of Iowa
+#> 6                5042          1             3 University of Iowa
+#>             visiting_team home_team_id visiting_team_id team_id
+#> 1 Wright State University           96              158     158
+#> 2 Wright State University           96              158     158
+#> 3 Wright State University           96              158      96
+#> 4 Wright State University           96              158      96
+#> 5 Wright State University           96              158     158
+#> 6 Wright State University           96              158      96
+#>         point_won_by winning_attack            serving_team     phase
+#> 1 University of Iowa          FALSE Wright State University      <NA>
+#> 2 University of Iowa          FALSE Wright State University      <NA>
+#> 3 University of Iowa          FALSE Wright State University      <NA>
+#> 4 University of Iowa          FALSE Wright State University      <NA>
+#> 5 University of Iowa          FALSE Wright State University     Serve
+#> 6 University of Iowa          FALSE Wright State University Reception
+#>   home_score_start_of_point visiting_score_start_of_point
+#> 1                         0                             0
+#> 2                         0                             0
+#> 3                         0                             0
+#> 4                         0                             0
+#> 5                         0                             0
+#> 6                         0                             0
+#>                             filename       date     receiving_team
+#> 1 &2017-08-25 20974 IOWA-WSU(VM).dvw 2017-08-25 University of Iowa
+#> 2 &2017-08-25 20974 IOWA-WSU(VM).dvw 2017-08-25 University of Iowa
+#> 3 &2017-08-25 20974 IOWA-WSU(VM).dvw 2017-08-25 University of Iowa
+#> 4 &2017-08-25 20974 IOWA-WSU(VM).dvw 2017-08-25 University of Iowa
+#> 5 &2017-08-25 20974 IOWA-WSU(VM).dvw 2017-08-25 University of Iowa
+#> 6 &2017-08-25 20974 IOWA-WSU(VM).dvw 2017-08-25 University of Iowa
+#>   receiving_team_id         set_won_by home_sets_won visiting_sets_won
+#> 1                96 University of Iowa             3                 0
+#> 2                96 University of Iowa             3                 0
+#> 3                96 University of Iowa             3                 0
+#> 4                96 University of Iowa             3                 0
+#> 5                96 University of Iowa             3                 0
+#> 6                96 University of Iowa             3                 0
+#>         match_won_by set_won_by_id team_won_set match_won_by_id team_won_match
+#> 1 University of Iowa            96        FALSE              96              0
+#> 2 University of Iowa            96        FALSE              96              0
+#> 3 University of Iowa            96         TRUE              96              1
+#> 4 University of Iowa            96         TRUE              96              1
+#> 5 University of Iowa            96        FALSE              96              0
+#> 6 University of Iowa            96         TRUE              96              1
+#>   home_setter_id visiting_setter_id setter_id     setter_position
+#> 1           <NA>               <NA>      <NA>                <NA>
+#> 2           <NA>               5033      5033 Rotation 1 (S in 1)
+#> 3           <NA>               5033      <NA>                <NA>
+#> 4         -49732               5033    -49732 Rotation 6 (S in 2)
+#> 5         -49732               5033      5033 Rotation 1 (S in 1)
+#> 6         -49732               5033    -49732 Rotation 6 (S in 2)
+#>   setter_front_back                opponent sets_won match_won team_score
+#> 1              <NA>      University of Iowa        0         0          0
+#> 2              back      University of Iowa        0         0          0
+#> 3              <NA> Wright State University        3         1          1
+#> 4             front Wright State University        3         1          1
+#> 5              back      University of Iowa        0         0          0
+#> 6             front Wright State University        3         1          1
+#>   opp_score last_name       Player
+#> 1         1        NA      NA - NA
+#> 2         1        NA      NA - NA
+#> 3         0        NA      NA - NA
+#> 4         0        NA      NA - NA
+#> 5         1  Lohmeier 1 - Lohmeier
+#> 6         0  Buzzerio 5 - Buzzerio
+#>                                                      Match position
+#> 1 2017-08-25-Wright State University vs University of Iowa     <NA>
+#> 2 2017-08-25-Wright State University vs University of Iowa     <NA>
+#> 3 2017-08-25-University of Iowa vs Wright State University     <NA>
+#> 4 2017-08-25-University of Iowa vs Wright State University     <NA>
+#> 5 2017-08-25-Wright State University vs University of Iowa        S
+#> 6 2017-08-25-University of Iowa vs Wright State University       OH
 ```
+
+Return a reception data table:
+
+`rec_table(df, 'Iowa', 3)`
 
 ## Get NCAA Women’s Volleyball schedules
 
@@ -231,7 +243,7 @@ get_ncaaw_teams()
 #> # ℹ 1,100 more rows
 ```
 
-Get NCAA womens team schedule
+Get NCAA womens team or conference schedule
 
 ``` r
 get_team_schedule(team_name = 'Yale', team_id = '813', yr = 2019)
@@ -250,8 +262,6 @@ get_team_schedule(team_name = 'Yale', team_id = '813', yr = 2019)
 #> 10 https://stats.ncaa.org/contests/176… 2019-09-28 00:00:00 Yale  Brown Yale    
 #> # ℹ 13 more rows
 ```
-
-Or get a conference of NCAA womens matches
 
 ``` r
 get_conf_schedule(conf_name = 'Big Ten', yr = 2022)

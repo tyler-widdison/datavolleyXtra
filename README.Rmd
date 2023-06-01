@@ -1,5 +1,6 @@
 ---
 output: github_document
+always_allow_html: true
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -36,9 +37,13 @@ This `dv_readXtra` is a function to read datavolley files with additional column
 
 ```{r datavolley}
 library(datavolleyXtra)
-df <- dv_readXtra('.')
+df <- dv_readXtra("dvws")
 df %>% head()
 ```
+
+Return a reception data table:
+
+`rec_table(df, 'Iowa', 3)`
 
 ## Get NCAA Women's Volleyball schedules
 
@@ -48,13 +53,11 @@ Get the NCAA womens teams
 get_ncaaw_teams()
 ```
 
-Get NCAA womens team schedule
+Get NCAA womens team or conference schedule
 
 ```{r teamSchedule}
 get_team_schedule(team_name = 'Yale', team_id = '813', yr = 2019)
 ```
-
-Or get a conference of NCAA womens matches
 
 ```{r confSchedule}
 get_conf_schedule(conf_name = 'Big Ten', yr = 2022)

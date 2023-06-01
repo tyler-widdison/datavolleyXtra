@@ -7,7 +7,7 @@
 dv_readXtra(d)
 }
 \arguments{
-\item{:}{dvw directory  path, run ('.') if local}
+\item{:}{dvw directory}
 }
 \value{
 data.frame: the plays component of a datavolley object, as returned by \code{dv_read()} In addition to plays, it also returns the following: filename, date (possible it could be incorrect), receiving_team, receiving_team_id, set_won_by, home_sets_won, visiting_sets_won, match_won_by, set_won_by_id, team_won_set, match_won_by_id, team_won_match, home_setter_id, visting_setter_id, setter_id, setter_position, setter_front_back, opponent, sets_won, match_won, position
@@ -17,7 +17,7 @@ Return datavolley plays object with added columns
 }
 \examples{
 \dontrun{
-  dv_readXtra('.')
+  dv_readXtra("dvws")
   }
 }
 \references{
