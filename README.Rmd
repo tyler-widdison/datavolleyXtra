@@ -5,7 +5,7 @@ always_allow_html: true
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
+```{r Setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -33,32 +33,39 @@ devtools::install_github("tyler-widdison/datavolleyXtra")
 
 ## Reading datavolley files
 
-This `dv_readXtra` is a function to read datavolley files with additional columns. Add as many files as you want so long as you have the correct path.
+This `dv_readXtra` is meant to provide a bit of a lazier way of reading dvw files. Add as many files as you want so long as you have the correct path.
 
-```{r datavolley}
+```{r FileReading}
 library(datavolleyXtra)
 df <- dv_readXtra("dvws")
-df %>% head()
 ```
 
-Return a reception data table:
+------------------------------------------------------------------------
 
-`rec_table(df, 'Iowa', 3)`
+#### Additions
 
-## Get NCAA Women's Volleyball schedules
+-   set_player
 
-Get the NCAA womens teams
+-   Player
 
-```{r teams}
-get_ncaaw_teams()
-```
+-   opponent
 
-Get NCAA womens team or conference schedule
+-   reception_quality
 
-```{r teamSchedule}
-get_team_schedule(team_name = 'Yale', team_id = '813', yr = 2019)
-```
+-   dig_quality
 
-```{r confSchedule}
-get_conf_schedule(conf_name = 'Big Ten', yr = 2022)
+-   setter_position
+
+-   filename
+
+-   date
+
+-   \+ more!
+
+------------------------------------------------------------------------
+
+## Return reception table
+
+```{r ReceptionTable}
+rec_table(df, 'Rutgers')
 ```

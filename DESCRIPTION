@@ -15,6 +15,7 @@ Imports:
   datavolley,
   DT,
   janitor,
+  kableExtra,
   purrr,
   ovlytics
 Depends:

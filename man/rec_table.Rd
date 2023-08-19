@@ -4,7 +4,7 @@
 \alias{rec_table}
 \title{Return a simple reception table}
 \usage{
-rec_table(data, team_name, rotation)
+rec_table(data, team_name)
 }
 \arguments{
 \item{data:}{dataset}
@@ -14,16 +14,15 @@ rec_table(data, team_name, rotation)
 \item{rotation:}{desired rotation}
 }
 \value{
-data table with simple reception statistics
+team_name can be string partial. data table with simple reception statistics by rotation. Returns reception attempts > 3
 }
 \description{
 Return a simple reception table
 }
 \examples{
 \dontrun{
-  rec_table(data, 'Yale', 3)
+  dv_readXtra(df, 'Rutgers')
   }
-
 }
 \author{
 Tyler Widdison

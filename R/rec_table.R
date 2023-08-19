@@ -8,86 +8,49 @@
 #' @importFrom dplyr filter mutate summarise left_join group_by
 #' @importFrom janitor adorn_totals
 #' @importFrom purrr pluck
+#' @importFrom kableExtra kable_styling pack_rows footnote kable
+#' @importFrom stringr str_detect
 #' @importFrom DT datatable formatPercentage formatStyle formatRound styleColorBar
 #' @importFrom magrittr "%>%"
 #' @export
 
-#' @return data table with simple reception statistics
+#' @return team_name can be string partial. data table with simple reception statistics by rotation. Returns reception attempts > 3
 #'
 #' @examples
 #' \dontrun{
-#'   rec_table(data, 'Yale', 3)
+#'   dv_readXtra(df, 'Rutgers')
 #'   }
-#'
 #' @export
 
-rec_table <- function(data, team_name, rotation) {
-  exp_so <- data %>%
-    dplyr::filter(skill == 'Reception') %>%
-    dplyr::group_by(evaluation_code, skill) %>%
-    dplyr::summarise(x_so = sum(point_won_by == team, na.rm = T) / dplyr::n())
-
-  data <- data %>%
-    dplyr::left_join(exp_so)
-
-  table <- data %>%
-    dplyr::filter(skill == 'Reception' & grepl(team_name, team) & grepl(paste0("Rotation ", rotation), setter_position)) %>%
+rec_table <- function(data, team_name) {
+  tib <- data %>%
+    dplyr::filter(skill == 'Reception' & stringr::str_detect(team, team_name)) %>%
     dplyr::group_by(setter_position, Player) %>%
     dplyr::summarise(n = dplyr::n(),
-              xs = sum(x_so),
-              so = sum(point_won_by == team, na.rm = T),
-              pp = sum(evaluation_code == '#'),
-              gp = sum(evaluation_code == '+'),
-              mp = sum(evaluation_code == '!'),
-              np = sum(evaluation_code == '-'),
-              op = sum(evaluation_code == '/'),
-              er = sum(evaluation_code == '='),
-              .groups = 'drop') %>%
-    janitor::adorn_totals() %>%
+                     so = sum(point_won_by == team, na.rm = T),
+                     pp = sum(evaluation_code == '#'),
+                     gp = sum(evaluation_code == '+'),
+                     mp = sum(evaluation_code == '!'),
+                     np = sum(evaluation_code == '-'),
+                     op = sum(evaluation_code == '/'),
+                     er = sum(evaluation_code == '='),
+                     .groups = 'drop') %>%
+    janitor::adorn_totals(name = team_name) %>%
     dplyr::group_by(setter_position, Player) %>%
     dplyr::summarise(Att = sum(n),
-              `SO%` = sum(so) / Att,
-              `Exp SO%` = sum(xs) / Att,
-              Index = ((sum(pp) *4) +
-                         (sum(gp) *3) +
-                         (sum(mp) *2) +
-                         (sum(np) *1) +
-                         (sum(er) *0) +
-                         (sum(op) *0.5)) / Att,
-              `ER%` = sum(er) / Att) %>%
-    dplyr::filter(Att > 10) %>%
-    dplyr::ungroup() %>%
-    dplyr::select(-setter_position) %>%
-    dplyr::mutate(Player = ifelse(Player == '-', 'Total', Player)) %>%
-    dplyr::arrange(Player, desc(`SO%`))
+                     `SO%` = scales::percent(sum(so) / Att, accuracy = .1),
+                     Index = round(((sum(pp) * 4) +
+                                (sum(gp) * 3) +
+                                (sum(mp) * 2) +
+                                (sum(np) * 1) +
+                                (sum(er) * 0) +
+                                (sum(op) * 0.5)) / Att,2),
+                     `ER%` = scales::percent(sum(er) / Att, accuracy = .1),
+                     .groups = 'drop') %>%
+    dplyr::filter(Att > 3)
 
-  rot <- data %>%
-    dplyr::filter(skill == 'Reception' & grepl(team_name, team) & grepl(paste0("Rotation ", rotation), setter_position)) %>%
-    dplyr::distinct(setter_position) %>%
-    purrr::pluck(1)
-
-    DT::datatable(table,
-                options = list(dom = 't'),
-                class = 'display nowrap compact cell-border stripe',
-                rownames = F,
-                caption = rot,
-                ) %>%
-    DT::formatPercentage('Exp SO%', 1) %>%
-    DT::formatRound('Index', 2) %>%
-    DT::formatPercentage('SO%', 1) %>%
-    DT::formatPercentage('ER%', 1) %>%
-
-    DT::formatStyle('Exp SO%',
-                    background = DT::styleColorBar(c(.30,table$`Exp SO%`), 'darkseagreen1'),
-                    backgroundSize = '95% 50%',
-                    backgroundRepeat = 'no-repeat',
-                    backgroundPosition = 'center') %>%
-
-    DT::formatStyle('SO%',
-                    background = DT::styleColorBar(c(.30,table$`SO%`), 'lightblue'),
-                    backgroundSize = '95% 50%',
-                    backgroundRepeat = 'no-repeat',
-                    backgroundPosition = 'center') %>%
-
-    DT::formatStyle(c(1:7), `border-right` = 'solid 1px')
-}
+  tib[, 2:6] %>%
+    kableExtra::kable(booktabs = T, longtable = T, linesep = '', caption = 'Reception by Rotation') %>%
+    kableExtra::kable_styling(latex_options = c("striped", "condensed"), full_width = F) %>%
+    kableExtra::pack_rows(index = table(tib$setter_position))
+  }
