@@ -22,6 +22,12 @@ knitr::opts_chunk$set(
 
 datavolleyXtra is a supplementary to <https://github.com/openvolley/datavolley>.
 
+-   Parsing additions
+
+-   Tables
+
+-   Plots
+
 ## Installation
 
 You can install the development version of datavolleyXtra from [GitHub](https://github.com/) with:
@@ -68,4 +74,10 @@ df <- dv_readXtra("dvws")
 
 ```{r ReceptionTable}
 rec_table(df, 'Rutgers')
+```
+
+## Return reception table - by end zone
+
+```{r ReceptionEndZoneTable}
+rec_end_zone(df, 'Rutgers')
 ```

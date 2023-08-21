@@ -10,8 +10,6 @@ rec_table(data, team_name)
 \item{data:}{dataset}
 
 \item{team_name:}{teamname desired in dataset. Can use short names, but will return other teams with smiliar short names IE 'Texas' will return multiple teams}
-
-\item{rotation:}{desired rotation}
 }
 \value{
 team_name can be string partial. data table with simple reception statistics by rotation. Returns reception attempts > 3

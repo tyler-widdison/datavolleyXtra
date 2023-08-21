@@ -2,7 +2,6 @@
 #'
 #' @param data: dataset
 #' @param team_name: teamname desired in dataset. Can use short names, but will return other teams with smiliar short names IE 'Texas' will return multiple teams
-#' @param rotation: desired rotation
 #' @author Tyler Widdison
 #' @description
 #' @importFrom dplyr filter mutate summarise left_join group_by

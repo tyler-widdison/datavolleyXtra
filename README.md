@@ -9,6 +9,12 @@
 datavolleyXtra is a supplementary to
 <https://github.com/openvolley/datavolley>.
 
+- Parsing additions
+
+- Tables
+
+- Plots
+
 ## Installation
 
 You can install the development version of datavolleyXtra from
@@ -29,8 +35,11 @@ path.
 library(datavolleyXtra)
 #> Loading required package: magrittr
 df <- dv_readXtra("dvws")
+#> Joining with `by = join_by(x)`
 #> Joining with `by = join_by(team, player_name)`
+#> Joining with `by = join_by(x)`
 #> Joining with `by = join_by(team, player_name)`
+#> Joining with `by = join_by(x)`
 #> Joining with `by = join_by(team, player_name)`
 ```
 
@@ -324,3 +333,360 @@ ER%
   </tr>
   </tbody>
   </table>
+
+## Return reception table - by end zone
+
+``` r
+rec_end_zone(df, 'Rutgers')
+```
+
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Rutgers reception by end zone
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+Rec zone
+</th>
+<th style="text-align:right;">
+Rec att
+</th>
+<th style="text-align:left;">
+SO%
+</th>
+<th style="text-align:right;">
+Index
+</th>
+<th style="text-align:right;">
+FBSO Eff
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Rotation 1 (S in 1)</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+100%
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+5
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+12%
+</td>
+<td style="text-align:right;">
+2.75
+</td>
+<td style="text-align:right;">
+-0.250
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+6
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+58%
+</td>
+<td style="text-align:right;">
+3.29
+</td>
+<td style="text-align:right;">
+0.143
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Rotation 2 (S in 6)</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+-0.333
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+6
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+38%
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+0.125
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Rotation 3 (S in 5)</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+100%
+</td>
+<td style="text-align:right;">
+2.33
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+5
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+100%
+</td>
+<td style="text-align:right;">
+3.50
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+100%
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Rotation 4 (S in 4)</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:right;">
+2.50
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+-1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+6
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+44%
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+-0.111
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Rotation 5 (S in 3)</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+50%
+</td>
+<td style="text-align:right;">
+2.67
+</td>
+<td style="text-align:right;">
+0.167
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+50%
+</td>
+<td style="text-align:right;">
+2.50
+</td>
+<td style="text-align:right;">
+-0.167
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Rotation 6 (S in 2)</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+5
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+42%
+</td>
+<td style="text-align:right;">
+2.57
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+40%
+</td>
+<td style="text-align:right;">
+3.20
+</td>
+<td style="text-align:right;">
+0.200
+</td>
+</tr>
+<tr grouplength="1">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Total</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;padding-left: 2em;" indentlevel="1">
+62
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+44%
+</td>
+<td style="text-align:right;">
+2.57
+</td>
+<td style="text-align:right;">
+0.014
+</td>
+</tr>
+</tbody>
+</table>
