@@ -9,7 +9,7 @@ rec_table(data, team_name)
 \arguments{
 \item{data:}{dataset}
 
-\item{team_name:}{teamname desired in dataset. Can use short names, but will return other teams with smiliar short names IE 'Texas' will return multiple teams}
+\item{team_name:}{teamname desired in dataset. Can use short names, but will return other teams with similar short names IE 'Texas' will return multiple teams}
 }
 \value{
 team_name can be string partial. data table with simple reception statistics by rotation. Returns reception attempts > 3
@@ -19,7 +19,7 @@ Return a simple reception table
 }
 \examples{
 \dontrun{
-  dv_readXtra(df, 'Rutgers')
+  rec_table(df, 'Rutgers')
   }
 }
 \author{

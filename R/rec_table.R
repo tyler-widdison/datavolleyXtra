@@ -1,7 +1,7 @@
 #' Return a simple reception table
 #'
 #' @param data: dataset
-#' @param team_name: teamname desired in dataset. Can use short names, but will return other teams with smiliar short names IE 'Texas' will return multiple teams
+#' @param team_name: teamname desired in dataset. Can use short names, but will return other teams with similar short names IE 'Texas' will return multiple teams
 #' @author Tyler Widdison
 #' @description
 #' @importFrom dplyr filter mutate summarise left_join group_by
@@ -17,7 +17,7 @@
 #'
 #' @examples
 #' \dontrun{
-#'   dv_readXtra(df, 'Rutgers')
+#'   rec_table(df, 'Rutgers')
 #'   }
 #' @export
 

@@ -39,8 +39,6 @@ devtools::install_github("tyler-widdison/datavolleyXtra")
 
 ## Reading datavolley files
 
-This `dv_readXtra` is meant to provide a bit of a lazier way of reading dvw files. Add as many files as you want so long as you have the correct path.
-
 ```{r FileReading}
 library(datavolleyXtra)
 df <- dv_readXtra("dvws")
@@ -66,18 +64,20 @@ df <- dv_readXtra("dvws")
 
 -   date
 
+-   dashboards
+
+-   plots
+
 -   \+ more!
 
 ------------------------------------------------------------------------
 
-## Return reception table
+
+## Dashboards 
+
+### Rotation rec table
 
 ```{r ReceptionTable}
-rec_table(df, 'Rutgers')
+rec_app(df)
 ```
 
-## Return reception table - by end zone
-
-```{r ReceptionEndZoneTable}
-rec_end_zone(df, 'Rutgers')
-```

@@ -44,32 +44,33 @@ dv_readXtra <- function(d = getwd()) {
     out$referees <- dv$more$referees
     # Ovlytics
     out <- ovlytics::ov_augment_plays(out, to_add = c('winners', 'setters', 'receiving_team'))
-    # Get rallys within a point
-    rallys <- out %>%
+    # Get possesion id within a rally
+    possesion <- out %>%
       dplyr::mutate(x = dplyr::row_number()) %>%
       dplyr::filter(skill == 'Attack') %>%
       dplyr::group_by(match_id, point_id) %>%
-      dplyr::mutate(rally_id = seq_along(point_id)) %>%
+      dplyr::mutate(possesion_id = seq_along(point_id),
+                    rally_id = seq_along(point_id)) %>%
       dplyr::ungroup() %>%
-      dplyr::distinct(x, rally_id)
-    # Add rally no to data
+      dplyr::distinct(x, possesion_id, rally_id)
+    # Add possesion no to data
     out <- out %>%
       dplyr::mutate(x = dplyr::row_number()) %>%
-      dplyr::left_join(rallys) %>%
-      tidyr::fill(rally_id, .direction = 'up') %>%
+      dplyr::left_join(possesion) %>%
+      tidyr::fill(possesion_id, .direction = 'down') %>%
       dplyr::select(-x)
     # Add reception quality to each point_id
     rq <- out %>% dplyr::filter(skill == "Reception") %>% dplyr::group_by(match_id, point_id) %>%
       dplyr::summarise(reception_quality = if (dplyr::n() == 1) .data$evaluation_code else NA_character_) %>% dplyr::ungroup() #https://snippets.openvolley.org/data-augmentation.html
-    # Add dig quality to each rally_id inside a point_id
-    dq <- out %>% dplyr::filter(skill == "Dig") %>% dplyr::group_by(match_id, point_id, rally_id) %>%
+    # Add dig quality to each possesion_id inside a point_id
+    dq <- out %>% dplyr::filter(skill == "Dig") %>% dplyr::group_by(match_id, point_id, possesion_id) %>%
       dplyr::summarise(dig_quality = if (dplyr::n() == 1) .data$evaluation_code else NA_character_) %>% dplyr::ungroup()
-    # Add dig quality to each rally_id inside a point_id
-    aq <- out %>% dplyr::filter(skill == "Attack") %>% dplyr::group_by(match_id, point_id, rally_id) %>%
+    # Add dig quality to each possesion_id inside a point_id
+    aq <- out %>% dplyr::filter(skill == "Attack") %>% dplyr::group_by(match_id, point_id, possesion_id) %>%
       dplyr::summarise(attack_quality = if (dplyr::n() == 1) .data$evaluation_code else NA_character_) %>% dplyr::ungroup()
 
     # Join back to data
-    out <- out %>% dplyr::left_join(rq, by = c("match_id", "point_id")) %>% dplyr::left_join(dq, by = c("match_id", "point_id", "rally_id")) %>% dplyr::left_join(aq, by = c("match_id", "point_id", "rally_id"))
+    out <- out %>% dplyr::left_join(rq, by = c("match_id", "point_id")) %>% dplyr::left_join(dq, by = c("match_id", "point_id", "possesion_id")) %>% dplyr::left_join(aq, by = c("match_id", "point_id", "possesion_id"))
     # Add a few more columns
     out <- out %>%
       dplyr::mutate(# Return the opponent team
@@ -139,5 +140,6 @@ dv_readXtra <- function(d = getwd()) {
   out <- playerFunction(out)
   # Return the data to px
   return(out)
-  }))
+  }
+  ))
 }
