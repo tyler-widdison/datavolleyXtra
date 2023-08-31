@@ -77,16 +77,10 @@ df <- dv_readXtra("dvws")
 
 ------------------------------------------------------------------------
 
-## Dashboards
-
-### Rotation rec table
+## Reception dashboards & tables
 
 ``` r
-rec_app(df)
-#> Loading required package: shiny
-#> Warning: package 'shiny' was built under R version 4.3.1
-#> 
-#> Listening on http://127.0.0.1:4828
+#rec_app(df)
+#rec_table(df, 'Purdue')
+#rec_end_zone(df, 'Purdue')
 ```
-
-<img src="man/figures/README-ReceptionTable-1.png" width="100%" />

@@ -73,11 +73,11 @@ df <- dv_readXtra("dvws")
 ------------------------------------------------------------------------
 
 
-## Dashboards 
-
-### Rotation rec table
+## Reception dashboards & tables
 
 ```{r ReceptionTable}
-rec_app(df)
+#rec_app(df)
+#rec_table(df, 'Purdue')
+#rec_end_zone(df, 'Purdue')
 ```
 
